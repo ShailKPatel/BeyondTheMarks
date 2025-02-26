@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import core_functionality.data_validator as dv
 import analysis.teacher_analysis as ta
+import bias_analysis.bias_detection as bd
 
 # Logo
 image = "images/logo.png"
@@ -10,6 +11,7 @@ st.logo(image, size='large')
 # -------------------------------
 # Title & File Upload Section
 # -------------------------------
+# methods
 
 st.title("🔬 Data Dissection: Where Numbers Spill Their Secrets!")
 
@@ -157,20 +159,66 @@ if marksheet:
                 st.dataframe(teacher_score_pivot)
                 
                 
-            
+        if st.button("⚖️ Gender Bias Detection"):
+            if 'Gender' not in df.columns:
+                st.write("🚨 Whoops! Your data doesn't have a 'Gender' column! 🤦‍♂️")
+                st.write("Analyzing gender bias without gender is like judging a cricket match without knowing the teams. 🏏")
+            else:
+                for subject in subject_names:
+                    attendance_col = f"{subject} Attendance"
+                    marks_col = f"{subject} Marks"
+                    teacher_col = f"{subject} Teacher" if f"{subject} Teacher" in df.columns else None
+
+                    if attendance_col not in df.columns or marks_col not in df.columns:
+                        st.write(f"⚠️ Skipping {subject}: Missing necessary columns!")
+                    else:
+                        # Prepare DataFrame slice
+                        cols_to_use = [attendance_col, marks_col, "Gender"]
+                        if teacher_col:
+                            cols_to_use.append(teacher_col)
+
+                        subject_df = df[cols_to_use]
+
+                        # Call the bias detection method
+                        st.write(f"🔍 Running bias detection for {subject}...")
+                        st.plotly_chart(bd.detect_bias(subject_df))
+
+                st.write("✅ Bias analysis complete! If the results make you uncomfortable, welcome to reality. 😉")
+
+
+        if st.button("☪️✝️🕉️ Religious Bias Detection"):
+            if 'Religion' not in df.columns:
+                st.write("🙏 Oh no! Your data doesn't have a 'Religion' column! 😇")
+                st.write("Trying to analyze religious bias without religion is like arguing about food without knowing what's on the plate. 🍛")
+            else:
+                for subject in subject_names:
+                    attendance_col = f"{subject} Attendance"
+                    marks_col = f"{subject} Marks"
+                    teacher_col = f"{subject} Teacher" if f"{subject} Teacher" in df.columns else None
+
+                    if attendance_col not in df.columns or marks_col not in df.columns:
+                        st.write(f"⚠️ Skipping {subject}: Missing necessary columns! Maybe the data needs a divine intervention. ✨")
+                    else:
+                        # Prepare DataFrame slice
+                        cols_to_use = [attendance_col, marks_col, "Religion"]
+                        if teacher_col:
+                            cols_to_use.append(teacher_col)
+
+                        subject_df = df[cols_to_use]
+
+                        # Call the bias detection method
+                        st.write(f"🔍 Running religious bias detection for {subject}... 🙏")
+                        st.plotly_chart(bd.detect_bias(subject_df))
+
+                st.write("✅ Bias analysis complete! If the results are shocking, just remember—faith can move mountains, but data doesn’t lie. 📊😉")
+
+
+        if st.button("📊 Subject Showdown: Which One Wins?"):
+            st.write("You chose: 📊 Subject Showdown: Which One Wins?")
 
 
     except TypeError as e:
         st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}")
-
-    if st.button("⚖️ Gender Bias Detection"):
-        st.write("You chose: ⚖️ Gender Bias: Fact or Fiction?")
-
-    if st.button("☪️✝️🕉️ Religious Bias Detection"):
-        st.write("You chose: ☪️✝️🕉️ Religious Bias Detector: Holy or Hokum?")
-
-    if st.button("📊 Subject Showdown: Which One Wins?"):
-        st.write("You chose: 📊 Subject Showdown: Which One Wins?")
 
 
 # -------------------------------
@@ -178,3 +226,5 @@ if marksheet:
 # -------------------------------
 
 st.markdown("☕ *Made with Caffine*")
+
+
