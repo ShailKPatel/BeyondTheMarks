@@ -38,7 +38,7 @@ def analyze_subject_performance(df, subject_names):
     # 2️⃣ BOX PLOT OF SUBJECT-WISE MARKS
     if len(subject_names) > 1:
         # Convert marks columns to long format for Plotly
-        marks_long_df = df.melt(id_vars=["roll_no", "name"], 
+        marks_long_df = df.melt(id_vars=["Roll No", "Name"], 
                                 value_vars=[f"{sub} Marks" for sub in subject_names], 
                                 var_name="Subject", 
                                 value_name="Marks")
@@ -101,8 +101,8 @@ def analyze_subject_performance(df, subject_names):
 if __name__ == "__main__":
     # Sample dataset
     data = {
-        "roll_no": [1, 2, 3, 4, 5],
-        "name": ["Amit", "Neha", "Rohan", "Sara", "Vikram"],
+        "Roll No": [1, 2, 3, 4, 5],
+        "Name": ["Amit", "Neha", "Rohan", "Sara", "Vikram"],
         "Math Marks": [85, 78, 92, 65, 80],
         "Math Attendance": [90, 85, 95, 60, 88],
         "Science Marks": [75, 88, 79, 72, 85],

@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import core_functionality.data_validator as dv
 import analysis.teacher_analysis as ta
+import analysis.subject_analysis as sa
 import bias_analysis.bias_detection as bd
 
 # Logo
@@ -214,7 +215,13 @@ if marksheet:
 
 
         if st.button("📊 Subject Showdown: Which One Wins?"):
-            st.write("You chose: 📊 Subject Showdown: Which One Wins?")
+            fig1, fig2, scatter_list = sa.analyze_subject_performance(df, subject_names)
+
+            if fig1: st.plotly_chart(fig1)  # Show correlation matrix
+            if fig2: st.plotly_chart(fig2)  # Show box plot
+            
+            for fig in scatter_list:
+                st.plotly_chart(fig)  # Show each scatter plot
 
 
     except TypeError as e:
