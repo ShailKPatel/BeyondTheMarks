@@ -2,8 +2,6 @@ from scipy.stats import f_oneway
 import pandas as pd
 from scipy.stats import iqr
 import plotly.express as px
-import streamlit as st
-
 
 def anova_significance(df):
     """
