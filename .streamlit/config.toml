@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#00BFFF"  # Cyan Blue for buttons & highlights
+backgroundColor = "#E0F7FA"  # White background
+secondaryBackgroundColor = "#547ff0"  # Light Cyan Blue for sidebar & panels
+textColor = "#31333F"  # Dark Grey for better readability
