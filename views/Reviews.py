@@ -43,7 +43,7 @@ def extract_reviews():
     """Retrieve archived review entries and load them into the queue."""
     repository = QueueWithReverse()
     try:
-        with open("reviews/recent_reviews.txt", "r", encoding="utf-8") as archive:
+        with open("reviews/recent_reviews.txt", "r", encoding="utf-8", errors='ignore') as archive:
             for note in archive:
                 repository.enqueue(note.strip())
     except FileNotFoundError:
@@ -75,7 +75,7 @@ class CustomHashMap:
     def load_word_count(self):
         """Load the word count data from the file."""
         if os.path.exists(self.filename):
-            with open(self.filename, 'r') as file:
+            with open(self.filename, 'r', errors='ignore') as file:
                 lines = file.readlines()
                 for line in lines:
                     word, count = line.strip().split(": ")
