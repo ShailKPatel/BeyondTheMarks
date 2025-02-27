@@ -34,7 +34,7 @@ if marksheet:
         
 
     except Exception as e:
-        st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}")
+        st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}.\nTry reloading page")
         has_error = True
 
         
@@ -228,7 +228,7 @@ if marksheet and not has_error:
 
 
     except TypeError as e:
-        st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}")
+        st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}.\nTry reloading page")
 
 
 # -------------------------------
