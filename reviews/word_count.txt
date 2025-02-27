@@ -24,8 +24,8 @@ the: 4
 bias: 2
 detection: 1
 feature.: 1
-it’s: 1
-so: 2
+itï¿½s: 1
+so: 4
 important: 1
 to: 3
 see: 2
@@ -41,7 +41,7 @@ it: 4
 easy: 1
 uncover: 1
 them.: 1
-didn’t: 1
+didnt: 1
 know: 1
 academic: 2
 could: 2
@@ -88,7 +88,7 @@ eye-opening.: 1
 anova: 1
 feature: 1
 analysis: 2
-genius!: 1
+genius!: 10
 now: 1
 instructors: 1
 impacting: 1
@@ -112,7 +112,7 @@ often: 1
 go: 1
 unnoticed.: 1
 realized: 1
-much: 1
+much: 3
 affect: 1
 results.: 1
 opened: 1
@@ -135,3 +135,8 @@ really: 1
 doing: 1
 relation: 1
 peers.: 1
+its: 1
+unique: 13
+math: 18
+Hard : 12
+math!: 1

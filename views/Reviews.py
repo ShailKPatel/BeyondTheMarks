@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 import os
+import time
 
 class QueueWithReverse:
     """Queue with a fixed limit, older reviews are removed when new ones come in."""
@@ -122,7 +123,7 @@ fig = go.Figure(data=[go.Bar(x=words, y=frequencies, marker_color='indianred')])
 
 # Update the layout for better display
 fig.update_layout(
-    title="Top 10 Most Used Words)",
+    title="Top 10 Most Used Words",
     xaxis_title="Words",
     yaxis_title="Frequency",
     template="plotly_dark"
@@ -145,6 +146,8 @@ if st.button("Submit Review"):
 
         st.balloons()
         st.success("Review submitted! No one asked for it, but here we are.")
+        time.sleep(3)  # Delay to show the balloons and success message
+
         st.rerun()
 
     else:
