@@ -18,7 +18,7 @@ st.title("🔬 Data Dissection: Where Numbers Spill Their Secrets!")
 
 st.subheader("📂 Upload Your 'Highly Confidential' Marksheet")
 marksheet = False
-
+has_error = False
 
 marksheet = st.file_uploader("Upload Combined Marksheet (CSV, XLS, XLSX)", type=["csv", "xls", "xlsx"])
 
@@ -29,14 +29,17 @@ if marksheet:
         df, subject_names = dv.validate_and_convert_file(marksheet)
         st.write(df)
         st.success("Nice! Your file is in—time to dig into the academic drama! 📊")
-        
+        has_error = False
+
         
 
     except Exception as e:
         st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}")
+        has_error = True
+
         
 # Data Upload Rulebook
-if not marksheet:
+else:
     st.markdown("""
     ### 🚨 **The Grand Data Upload Rulebook 📜** 🚨  
 
@@ -90,7 +93,7 @@ if not marksheet:
 # -------------------------------
 # Analysis Options with Witty Labels
 # -------------------------------
-if marksheet:
+if marksheet and not has_error:
     st.subheader("🔍 Pick Your Investigation Mode:")
     try:
 
