@@ -68,6 +68,11 @@ with st.container(border=True):
     Explore the technologies and tools that power this application."""
     st.page_link("views/Tech_Wizardry.py", label="View Technologies", icon="⚙️")
 
+with st.container(border=True):
+    """ # 🛠️ Reviews
+    Got Complaint.. Er... Suggestion? Drop them here"""
+    st.page_link("views/Reviews.py", label="Leave a Reviews", icon="⚙️")
+
 # -------------------------------
 # Footer
 # -------------------------------

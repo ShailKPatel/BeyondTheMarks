@@ -17,7 +17,7 @@ home = st.Page("views/Home.py", icon='🏠')  # Main landing page
 data_dissector = st.Page("views/Data_Dissector.py", icon='🔬')  # Analysis & insights
 the_brains_behind = st.Page("views/The_Brains_Behind.py", icon='🧠')  # Credits & acknowledgments
 tech_wizardry = st.Page("views/Tech_Wizardry.py", icon='🛠️')  # Technologies used & dependencies
-reviews = st.Page("views/reviews.py", icon='📨')  # Reviews
+reviews = st.Page("views/Reviews.py", icon='📨')  # Reviews
 
 # -------------------------------
 # Navigation Setup
