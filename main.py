@@ -17,6 +17,7 @@ home = st.Page("views/Home.py", icon='🏠')  # Main landing page
 data_dissector = st.Page("views/Data_Dissector.py", icon='🔬')  # Analysis & insights
 the_brains_behind = st.Page("views/The_Brains_Behind.py", icon='🧠')  # Credits & acknowledgments
 tech_wizardry = st.Page("views/Tech_Wizardry.py", icon='🛠️')  # Technologies used & dependencies
+reviews = st.Page("views/reviews.py", icon='📨')  # Reviews
 
 # -------------------------------
 # Navigation Setup
@@ -27,7 +28,7 @@ tech_wizardry = st.Page("views/Tech_Wizardry.py", icon='🛠️')  # Technologie
 # represent section names displayed in the navigation bar.
 
 pg = st.navigation(
-    [home,data_dissector,the_brains_behind,tech_wizardry]
+    [home,data_dissector,the_brains_behind,tech_wizardry,reviews]
 )
 
 # -------------------------------
