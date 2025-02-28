@@ -8,12 +8,6 @@ st.logo(image, size='large')
 st.title("🧠 The Brains Behind")
 st.write("Where genius meets caffeine-fueled debugging! ☕💻")
 
-# Shail K Patel - The mastermind
-# The `st.subheader(" **Shail K Patel** – Code Alchemist & Debugging Wizard")` line is creating a
-# subheader in the Streamlit web application interface. It displays the text "Shail K Patel - Code
-# Alchemist & Debugging Wizard" with a slightly larger font size compared to regular text, making it
-# stand out as a section title or heading within the content. The use of double asterisks (`**`)
-# around the name emphasizes the text and makes it bold.
 st.subheader("🐵 **Shail K Patel** – Code Alchemist & Debugging Wizard")
 st.write(
     "Shail doesn't just write code—he **convinces computers to behave**. "

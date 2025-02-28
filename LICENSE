@@ -1,3 +1,91 @@
+# Installation Guide for BeyondTheMarks
+
+## Prerequisites
+Before you begin, ensure you have the following installed:
+- **Python** (Latest stable version recommended)
+- **pip** (Python package manager)
+- **Streamlit** (For running the application)
+
+## Installation Steps
+
+1. **Clone the Repository**  
+   If you haven't already, clone the BeyondTheMarks repository:
+   ```sh
+   git clone <repository_url>
+   cd BeyondTheMarks
+   ```
+
+2. **Install Dependencies**  
+   Run the following command to install all required dependencies from `requirements.txt`:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Application**  
+   Use the command below to start the application with Streamlit:
+   ```sh
+   streamlit run main.py
+   ```
+
+## Requirements
+Below are the dependencies required to run BeyondTheMarks:
+```
+matplotlib==3.10.0
+numpy==2.1.0
+pandas==2.2.3
+plotly==6.0.0
+scikit-learn==1.6.1
+scipy==1.15.1
+shap==0.46.0
+statsmodels==0.14.4
+streamlit==1.42.2
+```
+
+## Project Structure
+The project is organized as follows:
+```
+BeyondTheMarks
+│   LICENSE
+│   main.py
+│   README.md
+│   requirements.txt
+│
+├───.streamlit
+│       config.toml
+│
+├───analysis
+│       subject_analysis.py
+│       teacher_analysis.py
+│
+├───bias_analysis
+│       bias_detection.py
+│
+├───core_functionality
+│       data_validator.py
+│
+├───images
+│       logo.png
+│
+├───reviews
+│       recent_reviews.txt
+│       word_count.txt
+│
+├───samplefiles
+│       test1.csv
+│       test2.csv
+│       test3.csv
+│       test4.csv
+│
+└───views
+        Data_Dissector.py
+        Home.py
+        Reviews.py
+        Tech_Wizardry.py
+        The_Brains_Behind.py
+```
+This structure ensures modularity and better organization of the codebase.
+
+## License
 MIT License
 
 Copyright (c) 2025 Shail K Patel
@@ -19,3 +107,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+

@@ -24,7 +24,6 @@ st.markdown(
     - 🎭 **Scipy & Statsmodels** – Where all the statistical black magic happens.
     - 🤖 **Sklearn** – Machine learning, but make it effortless.
     - 🎭 **SHAP** – Bias detection with explainability (a.k.a. “Why is this model so biased?”).
-    - 🔍 **Pydocs** – Documenting code like a responsible adult.
     """
 )
 

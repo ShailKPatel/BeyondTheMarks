@@ -20,7 +20,7 @@ st.subheader("📂 Upload Your 'Highly Confidential' Marksheet")
 marksheet = False
 has_error = False
 
-marksheet = st.file_uploader("Upload Combined Marksheet (CSV, XLS, XLSX)", type=["csv", "xls", "xlsx"])
+marksheet = st.file_uploader("Upload Combined Marksheet (CSV, XLSX)", type=["csv", "xlsx"])
 
 if marksheet:
 
@@ -35,6 +35,7 @@ if marksheet:
 
     except Exception as e:
         st.error(f"You didn't read the `The Grand Data Upload Rulebook 📜`: {e}.\nTry reloading page")
+        st.write(e.__traceback__)
         has_error = True
 
         
@@ -49,7 +50,7 @@ else:
 
     ### ✅ **Allowed File Formats:**  
     📂 **.csv** – The spreadsheet superhero.  
-    📂 **.xls, .xlsx, .xlsm, .xlsb** – The Excel empire (Yes, even `.xlsb`, the mysterious one).  
+    📂 **.xlsx, .xlsm, .xlsb** – The Excel empire (Yes, even `.xlsb`, the mysterious one).  
 
     🚫 **Forbidden Formats:** **.txt, .pdf, .png, .jpg, .docx, .pptx** (We analyze numbers, not ransom notes or abstract art).  
 
