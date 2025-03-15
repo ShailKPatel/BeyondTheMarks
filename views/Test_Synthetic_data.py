@@ -4,6 +4,7 @@ import core_functionality.data_validator as dv
 import analysis.teacher_analysis as ta
 import analysis.subject_analysis as sa
 import bias_analysis.bias_detection as bd
+import io
 
 # Logo
 image = "images/logo.png"
@@ -16,13 +17,17 @@ st.logo(image, size='large')
 
 st.title("🔬 Data Dissection: Where Numbers Spill Their Secrets!")
 
-st.subheader("📂 Upload Your 'Highly Confidential' Marksheet")
-marksheet = False
-has_error = False
+synthetic_data = pd.read_csv("samplefiles/test4.csv")  # Load synthetic data
+csv_buffer = io.StringIO()  # Create an in-memory file object
+synthetic_data.to_csv(csv_buffer, index=False)  # Write DataFrame to this buffer
+csv_buffer.seek(0)  # Move to the beginning of the buffer
+marksheet = csv_buffer  # Assign as a file-like object
+marksheet.name = "synthetic_data.csv"  # Mimic UploadedFile behavior
 
-marksheet = st.file_uploader("Upload Combined Marksheet (CSV, XLSX)", type=["csv", "xlsx"])
 
-if marksheet:
+st.page_link("views/Data_Analysis.py", label="Try with your own data", icon="🔁")    
+    
+if marksheet is not None:
 
     # Determine file type and read accordingly
     try:
@@ -237,5 +242,4 @@ if marksheet and not has_error:
 # -------------------------------
 
 st.markdown("☕ *Made with Caffine*")
-
 

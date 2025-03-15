@@ -1,4 +1,4 @@
 This has so much math it hurts my brain
-Excusite use of maths
-so much MATH
-Painfully difficult to understand
+It is a great idea to use SHAP for detecting grading bias!
+Painfully difficult to understand, would appreciate it if it was simpler to use
+It is greatly executed but needs more polishing to be used in schools

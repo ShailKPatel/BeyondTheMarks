@@ -43,8 +43,9 @@ st.markdown("""
 ✔ **Teacher Efficiency Analysis**: Uses **ANOVA** to assess teacher impact.  
 ✔ **Bias Detection**: Analyzes trends based on **gender** and **religion**.  
 ✔ **Student Performance Lookup**: Provides percentile-based insights.  
-✔ **3D Data Visualization**: Plots **attendance vs. theory vs. practical marks**.  
-✔ **Error Handling**: Custom exceptions for invalid files, missing data, and format issues.  
+✔ **ANOVA for Teacher Evaluation**: Measuring the impact of teachers on student performance.  
+✔ **One-Hot Encoding for Fairness**: Ensuring the model treats all labels equally.  
+✔ **SHAP for Uncovering Bias**: Detecting hidden biases with explainable AI.
 """)
 
 # -------------------------------
@@ -54,9 +55,9 @@ st.markdown("""
 st.header("📌 Explore the Tool")
 
 with st.container(border=True):
-    """ # 🔬 Data Dissector
+    """ # 🔬 Data Analysis
     Generate detailed insights on student performance and trends."""
-    st.page_link("views/Data_Dissector.py", label="Go to Data Dissector", icon="📊")
+    st.page_link("views/Data_Analysis.py", label="Go to Data Analysis", icon="📊")
 
 with st.container(border=True):
     """ # 🧠 The Brains Behind
