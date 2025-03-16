@@ -70,9 +70,14 @@ with st.container(border=True):
     st.page_link("views/Tech_Wizardry.py", label="View Technologies", icon="⚙️")
 
 with st.container(border=True):
-    """ # 🛠️ Reviews
+    """ # 📨 Reviews
     Got Complaint.. Er... Suggestion? Drop them here"""
-    st.page_link("views/Reviews.py", label="Leave a Reviews", icon="⚙️")
+    st.page_link("views/Reviews.py", label="Leave a Reviews", icon="📫")
+    
+with st.container(border=True):
+    """ # 🎓 Attendance for Impact 
+    An alternate to BeyondTheMarks analyzes subject-wise attendance-mark correlations, explains skewness, deviation, IQR, interprets trends, and suggests data-driven solutions for better performance."""
+    st.link_button(url="https://attendance-for-impact.streamlit.app/", label="Try it", icon="🔀")
 
 # -------------------------------
 # Footer

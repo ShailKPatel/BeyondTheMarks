@@ -25,7 +25,7 @@ marksheet = csv_buffer  # Assign as a file-like object
 marksheet.name = "synthetic_data.csv"  # Mimic UploadedFile behavior
 
 
-st.page_link("views/Data_Analysis.py", label="Try with your own data", icon="🔁")    
+st.page_link("views/Data_Analysis.py", label="Try it with your own data!", icon="🔁")    
     
 if marksheet is not None:
 
@@ -33,7 +33,7 @@ if marksheet is not None:
     try:
         df, subject_names = dv.validate_and_convert_file(marksheet)
         st.write(df)
-        st.success("Nice! Your file is in—time to dig into the academic drama! 📊")
+        st.success("Nice! We are working with sample data! 📊")
         has_error = False
 
         
@@ -43,59 +43,8 @@ if marksheet is not None:
         st.write(e.__traceback__)
         has_error = True
 
-        
-# Data Upload Rulebook
-else:
-    st.markdown("""
-    ### 🚨 **The Grand Data Upload Rulebook 📜** 🚨  
 
-    Ah, dear uploader, you dare challenge the mighty gates of **Data Validation?** Fear not! Follow these sacred rules, and your file shall pass. Break them, and your data shall be cast into the abyss of rejection!  
 
-    ---
-
-    ### ✅ **Allowed File Formats:**  
-    📂 **.csv** – The spreadsheet superhero.  
-    📂 **.xlsx, .xlsm, .xlsb** – The Excel empire (Yes, even `.xlsb`, the mysterious one).  
-
-    🚫 **Forbidden Formats:** **.txt, .pdf, .png, .jpg, .docx, .pptx** (We analyze numbers, not ransom notes or abstract art).  
-
-    ---
-
-    ### 📏 **Structural Laws of the Data Universe**  
-
-    🆔 **Roll No:** The sacred identifier—must be unique! No duplicates, no missing values, no nonsense!  
-
-    📊 **Subject Columns:**  
-    ✔ Format: **[Subject] Attendance** and **[Subject] Marks** (e.g., "Math Attendance", "Math Marks").  
-    ✔ If an attendance column exists for a subject, the marks **MUST** also exist (and vice versa). No lone rangers!  
-
-    👨‍🏫 **Teacher Column (Optional, but respected)**  
-    ✔ If present, should follow the **"[Subject] Teacher"** format (e.g., "Math Teacher").  
-    ✔ If missing, we assume **all teachers are omnipresent beings.**  
-
-    ---
-
-    ### 🔢 **Numerical Discipline**  
-    ✔ **Attendance & Marks:** Must be numeric (0 to 100). No alphabets, emojis, or secret codes!  
-    ✔ **Rounded to 2 decimal places.** This isn’t quantum physics; we don’t need 27 decimal points.  
-
-    ---
-
-    ### 🚧 **Limits & Restrictions**  
-    🛑 **Maximum** of **N subjects** allowed. This isn’t Hogwarts; you can’t study infinite subjects!  
-    🛑 **Unexpected columns will be exiled!** If it's not Roll No, Attendance, Marks, or Teacher, we don’t want it.  
-
-    ---
-
-    ### ⚠ **Final Warning**  
-    Break these rules, and your file shall face:  
-    ❌ Instant rejection  
-    ❌ Merciless error messages  
-    ❌ A disappointed AI staring at you 😐  
-
-    Follow them, and your data shall pass the validation gates with glory! 🎉  
-    """)
-    
 # -------------------------------
 # Analysis Options with Witty Labels
 # -------------------------------

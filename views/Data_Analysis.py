@@ -22,7 +22,13 @@ has_error = False
 
 marksheet = st.file_uploader("Upload Combined Marksheet (CSV, XLSX)", type=["csv", "xlsx"])
 
-st.page_link("views/Test_Synthetic_data.py", label="Try synthetic Data Analysis", icon="🔁")    
+st.page_link("views/Test_Synthetic_data.py", label="Try Data Analysis with sample data?", icon="🔁", use_container_width=True)   
+
+sample_file_path = "samplefiles/test4.csv"
+with open(sample_file_path, "rb") as file:
+    sample_data = file.read()
+
+st.download_button(label="Download sample data", icon="📥", use_container_width=True,data=sample_data,file_name="sample_data.csv")
     
 if marksheet:
 
