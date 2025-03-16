@@ -229,8 +229,10 @@ if marksheet and not has_error:
         if st.button("📊 Subject Showdown: Which One Wins?"):
             fig1, fig2, scatter_list = sa.analyze_subject_performance(df, subject_names)
 
-            if fig1: st.plotly_chart(fig1)  # Show correlation matrix
-            if fig2: st.plotly_chart(fig2)  # Show box plot
+            if fig1: 
+                st.plotly_chart(fig1)  # Show correlation matrix
+            if fig2: 
+                st.plotly_chart(fig2)  # Show box plot
             
             for fig in scatter_list:
                 st.plotly_chart(fig)  # Show each scatter plot

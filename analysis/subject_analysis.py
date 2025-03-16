@@ -89,7 +89,7 @@ def analyze_subject_performance(df, subject_names):
         scatter_plot.add_annotation(
             x=df[attendance_col].max(), 
             y=df[marks_col].max(),
-            text=f"Marks = {slope:.2f} × Attendance + {intercept:.2f}",
+            text=f"Marks = {slope:.2f} x Attendance + {intercept:.2f}",
             showarrow=False,
             font=dict(size=14, color="red")
         )
@@ -117,8 +117,10 @@ if __name__ == "__main__":
     subjects = ["Math", "Science", "English"]
     fig1, fig2, scatter_list = analyze_subject_performance(df, subjects)
 
-    if fig1: fig1.show()  # Show correlation matrix
-    if fig2: fig2.show()  # Show box plot
+    if fig1: 
+        fig1.show()  # Show correlation matrix
+    if fig2: 
+        fig2.show()  # Show box plot
 
     for fig in scatter_list:
         fig.show()  # Show each scatter plot
