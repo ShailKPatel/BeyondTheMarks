@@ -13,7 +13,7 @@ import streamlit as st
 
 home = st.Page("views/Home.py", icon='🏠')  # Main landing page
 data_analysis = st.Page("views/Data_Analysis.py", icon='🔬')  # Analysis & insights
-sythentic = st.Page("views/View_Synthetic_data.py", icon='🔁')  # Synthetic
+sythentic = st.Page("views/View_Synthetic_Data.py", icon='🔁')  # Synthetic
 the_brains_behind = st.Page("views/The_Brains_Behind.py", icon='🧠')  # Credits & acknowledgments
 tech_wizardry = st.Page("views/Tech_Wizardry.py", icon='🛠️')  # Technologies used & dependencies
 reviews = st.Page("views/Reviews.py", icon='📨')  # Reviews

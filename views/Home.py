@@ -17,16 +17,6 @@ st.title("📊 Beyond The Marks 🎓")
 
 # Subtitle & Description
 st.markdown("""
-_A smart data-driven tool designed to analyze student performance, 
-evaluate teacher effectiveness, and detect potential biases._  
-""")
-
-# -------------------------------
-# Project Overview
-# -------------------------------
-
-st.header("🔍 Overview")
-st.write("""
 Beyond The Marks processes academic records to uncover 
 insights about student performance. It evaluates teacher effectiveness 
 and detects possible biases based on gender or religion.  
@@ -54,6 +44,11 @@ st.markdown("""
 
 st.header("📌 Explore the Tool")
 
+with st.container(border=True):
+    """ # Test Analysis Feature
+    This page allows you to test the project and generate an analysis of student performance without uploading a file. If you prefer to test the app without providing your own data, you can use pre-existing analysis. To generate a synthetic analysis, simply click the button below.
+    Generate detailed insights on student performance and trends."""
+    st.page_link("views/View_Synthetic_Data.py", label="Generate Synthetic Analysis", icon="🧪")
 with st.container(border=True):
     """ # 🔬 Data Analysis
     Generate detailed insights on student performance and trends."""
