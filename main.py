@@ -27,7 +27,12 @@ reviews = st.Page("views/Reviews.py", icon='📨')  # Reviews
 pg = st.navigation(
     [home,data_analysis,sythentic,the_brains_behind,tech_wizardry,reviews]
 )
-
+pg = st.navigation({
+    "Home": [home],
+    "Analysis": [data_analysis,sythentic],
+    "Credits": [the_brains_behind,tech_wizardry],
+    "Review": [reviews]
+})
 # Run the Navigation System
 
 # This method initializes the navigation system and ensures that the selected 
