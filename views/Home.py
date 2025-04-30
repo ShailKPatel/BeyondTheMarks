@@ -48,7 +48,7 @@ with st.container(border=True):
     """ # Test Analysis Feature
     This page allows you to test the project and generate an analysis of student performance without uploading a file. If you prefer to test the app without providing your own data, you can use pre-existing analysis. To generate a synthetic analysis, simply click the button below.
     Generate detailed insights on student performance and trends."""
-    st.page_link("views/View_Synthetic_Data.py", label="Generate Synthetic Analysis", icon="🧪")
+    st.page_link("views/View_Synthetic_Analysis.py", label="Generate Synthetic Analysis", icon="🧪")
 with st.container(border=True):
     """ # 🔬 Data Analysis
     Generate detailed insights on student performance and trends."""
