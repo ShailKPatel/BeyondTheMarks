@@ -1,6 +1,6 @@
 [theme]
-primaryColor = "#00BFFF"  # Cyan Blue for buttons & highlights
-backgroundColor = "#E0F7FA"  # Very light blue for the background
-secondaryBackgroundColor = "#547FF0"  # Vibrant blue for sidebars and panels
-textColor = "#31333F"  # Dark Grey for contrast and readability
-font = "sans serif"
+primaryColor = "#1E88E5"            # Medium blue – strong, but not overpowering
+backgroundColor = "#F0F4F8"         # Soft light grey-blue – easier on the eyes
+secondaryBackgroundColor = "#90CAF9"  # Muted light blue – supportive, not dominant
+textColor = "#212121"               # Deep grey – warm, readable
+font = "Segoe UI, sans-serif"       # Clean, modern, consistent with Windows
