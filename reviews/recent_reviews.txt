@@ -1,4 +1,6 @@
-This has so much math it hurts my brain
 It is a great idea to use SHAP for detecting grading bias!
 Painfully difficult to understand, would appreciate it if it was simpler to use
 It is greatly executed but needs more polishing to be used in schools
+Using SHAP to uncover grading bias is a brilliant concept! Its complexity, though, makes it tough for non-experts to apply effectively.
+The tool’s potential for fairer grading is impressive, but its interface feels clunky and needs streamlining for practical use.
+SHAP’s application here is innovative and well-intentioned. More refinement is needed to make it accessible for widespread school adoption.
