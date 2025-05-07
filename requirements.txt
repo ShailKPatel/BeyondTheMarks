@@ -7,3 +7,4 @@ scipy==1.15.1
 shap==0.46.0
 statsmodels==0.14.4
 streamlit==1.42.2
+wordcloud==1.9.4

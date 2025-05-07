@@ -1,95 +1,138 @@
 import streamlit as st
-import plotly.graph_objects as go
+from wordcloud import WordCloud, STOPWORDS
+import matplotlib.pyplot as plt
+import json
 import os
-import time
-from collections import deque, Counter
+from collections import Counter, deque
+import re
+import numpy as np
 
-REVIEW_PATH = "reviews/recent_reviews.txt"
-WORD_COUNT_PATH = "reviews/word_count.txt"
+# File Paths
+REVIEW_PATH = "reviews/recent_reviews.json"
+WORD_COUNT_PATH = "reviews/word_count.json"
 REVIEW_LIMIT = 6
 
-# Load reviews into deque with max length
-def extract_reviews():
-    queue = deque(maxlen=REVIEW_LIMIT)
-    try:
-        with open(REVIEW_PATH, "r", encoding="utf-8", errors="ignore") as archive:
-            for line in archive:
-                queue.append(line.strip())
-    except FileNotFoundError:
-        pass
-    return queue
+# Expanded filter words to prevent "lol" variations and vandalism
+FILTER_WORDS = {
+    "lol", "lolis", "laughing", "out", "loud",  # Cover "laughing out loud" and variations
+    "haha", "hehe", "lmao", "rofl"  # Other informal laughter terms
+}
 
-# Save reviews back to file
-def preserve_reviews(queue):
-    with open(REVIEW_PATH, "w", encoding="utf-8") as archive:
-        for entry in queue:
-            archive.write(entry.replace("\n", " ") + "\n")
+# Load reviews
+def load_reviews():
+    if os.path.exists(REVIEW_PATH):
+        with open(REVIEW_PATH, "r", encoding="utf-8") as file:
+            return deque(json.load(file), maxlen=REVIEW_LIMIT)
+    return deque(maxlen=REVIEW_LIMIT)
 
-# Load word counts into Counter
+# Save reviews
+def save_reviews(reviews):
+    with open(REVIEW_PATH, "w", encoding="utf-8") as file:
+        json.dump(list(reviews), file)
+
+# Load word count
 def load_word_count():
-    counter = Counter()
     if os.path.exists(WORD_COUNT_PATH):
-        with open(WORD_COUNT_PATH, "r", errors='ignore') as file:
-            for line in file:
-                try:
-                    word, count = line.strip().split(": ")
-                    counter[word] = int(count)
-                except ValueError:
-                    continue
-    return counter
+        with open(WORD_COUNT_PATH, "r", encoding="utf-8") as file:
+            return Counter(json.load(file))
+    return Counter()
 
-# Save word counts back to file
+# Save word count
 def save_word_count(counter):
-    with open(WORD_COUNT_PATH, "w") as file:
-        for word, count in counter.items():
-            file.write(f"{word}: {count}\n")
+    with open(WORD_COUNT_PATH, "w", encoding="utf-8") as file:
+        json.dump(dict(counter), file)
+
+# Filter words: stop words, "lol" variations, and vandalism
+def should_count_word(word):
+    # Use regex to catch "lol" with special characters (e.g., "lol!")
+    if re.search(r'l+o+l+[!@#$%^&*]*', word.lower()):
+        return False
+    # Check against stop words and filter words
+    return (word.lower() not in STOPWORDS and 
+            word.lower() not in FILTER_WORDS and 
+            not any(fw in word.lower() for fw in FILTER_WORDS))
+
+# Check if review contains "lol" or filtered words
+def contains_filtered_words(review):
+    words = review.split()
+    for word in words:
+        # Check for "lol" variations with regex
+        if re.search(r'l+o+l+[!@#$%^&*]*', word.lower()):
+            return True
+        # Check for other filter words
+        if any(fw in word.lower() for fw in FILTER_WORDS) or word.lower() in FILTER_WORDS:
+            return True
+    return False
 
 # Initialize data
-review_queue = extract_reviews()
-word_count_map = load_word_count()
+review_queue = load_reviews()
+word_count = load_word_count()
 
 # Streamlit UI
 st.title("💬 Beyond the Marks: The Feedback Chronicles")
 
-st.subheader("📜 Recent Reviews (aka My Emotional Rollercoaster)")
+st.subheader("📜 Recent Reviews")
 if review_queue:
-    total_entries = len(review_queue)
-    for i in range(0, total_entries, 3):
-        columns = st.columns(min(3, total_entries - i))
-        for j in range(min(3, total_entries - i)):
-            with columns[j]:
-                st.write(f"✍️ {list(review_queue)[i + j]}")
+    for review in review_queue:
+        st.write(f"✍️ {review}")
 else:
     st.write("No reviews yet. Be the first to leave your mark! ✨")
 
-st.subheader("📊 Top 10 Words People Can't Stop Using (aka The 'Sentiment' Breakdown)")
-top_words = dict(sorted(word_count_map.items(), key=lambda item: item[1], reverse=True)[:10])
-words = list(top_words.keys())
-frequencies = list(top_words.values())
+st.subheader("📊 Word Cloud")
+if word_count:
+    # Filter word_count to remove stop words and filtered words
+    filtered_word_count = Counter()
+    for word, freq in word_count.items():
+        if should_count_word(word):
+            filtered_word_count[word.lower()] += freq
 
-fig = go.Figure(data=[go.Bar(x=words, y=frequencies, marker_color='indianred')])
-fig.update_layout(
-    title="Top 10 Most Used Words",
-    xaxis_title="Words",
-    yaxis_title="Frequency",
-    template="plotly_dark"
-)
-st.plotly_chart(fig)
+    if filtered_word_count:
+        # Custom color function for a cohesive look (shades of blue)
+        def blue_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+            return f"hsl(210, 70%, {np.random.randint(40, 80)}%)"
 
-user_review = st.text_area("Got Complaint.. Er... Suggestion? Drop them here", "")
+        # Generate word cloud with improved aesthetics
+        wordcloud = WordCloud(
+            width=800,
+            height=400,
+            background_color="white",  # Lighter background for clarity
+            max_words=50,  # Limit to avoid clutter
+            min_font_size=12,  # Ensure readability
+            scale=3,  # Higher resolution
+            stopwords=STOPWORDS.union(FILTER_WORDS),  # Double-check stop words
+            color_func=blue_color_func  # Apply custom colors
+        ).generate_from_frequencies(filtered_word_count)
 
+        # Display word cloud
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.imshow(wordcloud, interpolation="bilinear")
+        ax.axis("off")
+        st.pyplot(fig)
+    else:
+        st.write("No valid words to display in the word cloud after filtering.")
+else:
+    st.write("No words to display in the word cloud yet. Submit a review!")
+
+# Submit new review
+user_review = st.text_area("Got a complaint or suggestion? Drop it here", "")
 if st.button("Submit Review"):
     if user_review:
-        review_queue.append(user_review)
-        preserve_reviews(review_queue)
+        # Check if the review contains filtered words
+        if not contains_filtered_words(user_review):
+            # Only save and process the review if it doesn't contain filtered words
+            review_queue.append(user_review)
+            save_reviews(review_queue)
 
-        for word in user_review.lower().split():
-            word_count_map[word] += 1
-        save_word_count(word_count_map)
+            # Process words for word count: remove punctuation, normalize case
+            words = re.findall(r'\b\w+\b', user_review.lower())
+            for word in words:
+                if should_count_word(word):
+                    word_count[word] += 1
+            save_word_count(word_count)
 
+        # Always show balloons and thanks message, even if review isn't saved
         st.balloons()
-        st.success("Review submitted! No one asked for it, but here we are.")
-        time.sleep(3)
+        st.success("Review submitted! Thanks for sharing your thoughts!")
         st.rerun()
     else:
-        st.warning("Your feedback is as empty as my promises. Try again.")
+        st.warning("Please write something before submitting.")
